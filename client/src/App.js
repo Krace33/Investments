@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import axios from "axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const [res, setRes] = useState("Check Server");
 
-export default App;
+  const check = async () => {
+    setRes("Loading");
+    const response = await axios.get('http://127.0.0.1:5000');
+    const ans = response.data;
+    setRes(ans);
+  }
+
+  return (
+    <div>
+      <h1>This is the landing page</h1>
+      <h3>{res}</h3>
+      <button onClick={check}>Click me!!</button>
+    </div>
+  )
+  }
+
+  export default App;

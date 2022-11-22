@@ -1,0 +1,23 @@
+{
+  "name": "investments",
+  "version": "1.0.0",
+  "description": "It is a management system which helps an individual to effectively store , organise , review their expenses and investments. Not just that , it also facilitates and acts as an imperative tool to help the individual compute his/her net worth and rate of investment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server && nodemon index.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shaurya-3003/Investments.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shaurya-3003/Investments/issues"
+  },
+  "homepage": "https://github.com/Shaurya-3003/Investments#readme"
+}
