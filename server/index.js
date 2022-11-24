@@ -9,6 +9,7 @@ import signup from "./routes/signup.js";
 import home from "./routes/home.js";
 import login from "./routes/login.js";
 import logout from "./routes/logout.js";
+import portfolio from "./routes/portfolio.js";
 
 const app=express();
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/', home);
 app.use('/login', login);
 app.use('/signup', signup);
 app.use('/logout', logout)
+app.use('/portfolio', portfolio)
 
 try {
     mongoose.connect("mongodb://localhost:27017/investmentsDB");
