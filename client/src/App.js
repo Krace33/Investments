@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from "./components/Home";
+import LoginForm from "./components/LoginForm";
+import Logout from "./components/Logout";
+import Portfolio from "./components/Portfolio";
+import SignUp from "./components/SignUp";
 
 export default function App() {
-    const [res, setRes] = useState("Check Server");
-
-    const check = async () => {
-        setRes("Loading");
-        const response = await axios.get('http://127.0.0.1:5000');
-        console.log(response)
-        const ans = response.data;
-        setRes(ans);
-    }
-
+   
     return (
-        <>
-            <h1>This is the landing page</h1>
-            <h3>{res}</h3>
-            <button onClick={check}>Click me!!</button>
-        </>
-    )
+      
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginForm /> } />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/signup" element={<SignUp />} />
+
+        </Routes>
+      </Router>
+    );
 }
 
 
