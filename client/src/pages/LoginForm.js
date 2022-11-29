@@ -1,10 +1,28 @@
-import React from 'react'
-
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+
+  const url = 'http://127.0.0.1:5000/login';
+  const navigate = useNavigate()
+
+  const [details, setDetails] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await axios.post(url, details, {
+      withCredentials: true
+    })
+    res.status===200?navigate('/portfolio'):navigate('/signup');
+  }
+
   return (
     <div>
-    <form>
+      <form onSubmit={handleSubmit}>
         <h3>Sign In</h3>
         <div className="mb-3">
           <label>Email address</label>
@@ -12,6 +30,8 @@ const LoginForm = () => {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            value={details.username}
+            onChange={(e) => setDetails({ ...details, username: e.target.value })}
           />
         </div>
         <div className="mb-3">
@@ -20,6 +40,8 @@ const LoginForm = () => {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            value={details.password}
+            onChange={(e) => setDetails({ ...details, password: e.target.value })}
           />
         </div>
         <div className="mb-3">
@@ -39,9 +61,6 @@ const LoginForm = () => {
             Submit
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
-        </p>
       </form>
     </div>
   )
