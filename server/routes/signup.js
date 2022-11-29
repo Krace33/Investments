@@ -29,12 +29,10 @@ passport.deserializeUser(function (id, done) {
 
 signup.route('/')
     .get((req, res) => {
-        console.log("Signup route is active");
         res.send("Signup route is runnning");
     })
     .post((req, res) => {
         const {username, password}=req.body;
-        console.log(username, password);
         User.register({ username }, password, (err, user) => {
             if (err) {
                 console.log("There seems to be a problem here");

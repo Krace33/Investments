@@ -8,7 +8,6 @@ const Home = () => {
     const check = async () => {
         setRes("Loading");
         const response = await axios.get('http://127.0.0.1:5000');
-        console.log(response)
         const ans = response.data;
         setRes(ans);
     }

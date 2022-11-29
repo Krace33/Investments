@@ -34,7 +34,6 @@ passport.deserializeUser((id, done) => {
 login.route('/')
     .get(async (req, res) => {
         if(req.isAuthenticated()){
-            console.log("Login Route is working");
             res.send("Login Route is running");
     }})
     .post((req, res, next) => {
