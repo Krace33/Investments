@@ -21,7 +21,6 @@ export default function InvestmentRow(props) {
                 options: res.data.options
             });
         }
-        console.log(data)
     }
 
     const toggleIsEditable = () => setisEditable(!isEditable);
@@ -46,7 +45,6 @@ export default function InvestmentRow(props) {
             id: props.id,
         },
             { withCredentials: true });
-        console.log(res);
         await fetch();
     }
 
@@ -73,6 +71,7 @@ export default function InvestmentRow(props) {
         <tr>
             <td>{props.name}</td>
             {!isEditable ? normalText() : editableText()}
+            <td>${data.options.find((item)=>item.name===props.name).value}</td>
             <td><button onClick={handleDelete}>Delete</button></td>
         </tr>
     </>

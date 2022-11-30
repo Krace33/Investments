@@ -35,9 +35,11 @@ const getNetWorth = async (user, portfolios) => {
     let ans = 0;
     for (const p of portfolios) {
         const investments = await Investment.find({ userID: user, portfolioID: p.name });
-        for (const investment of investments) {
-            ans += investment.quantity * 5;
-        }
+        for(const investment of investments){
+            let price=data.find((item)=>item.name===investment.name).value;
+            price=price?price:5;
+            ans+=investment.quantity*price;
+        }          
     }
     return ans;
 }
@@ -48,8 +50,7 @@ const addValueToPortfolios=async(user, portfolios)=>{
         const investments=await Investment.find({userID:user, portfolioID:portfolio.name});
         let value=0;
         for(const investment of investments){
-            let price=data.find((item)=>item.label===investment.name);
-            console.log(data);
+            let price=data.find((item)=>item.name===investment.name).value;
             price=price?price:5;
             value+=investment.quantity*price;
         }
@@ -58,7 +59,6 @@ const addValueToPortfolios=async(user, portfolios)=>{
             value
         })
     }
-    console.log(obj);
     return obj;
 }
 
@@ -122,12 +122,13 @@ portfolio.route('/:portfolio')
             const investments = await Investment.find({ userID: userID, portfolioID: portfolioID });
             const values=[];
             for(const investment of investments){
-                let price=data.find((item)=>item.label===investment.name);
+                let price=data.find((item)=>item.name===investment.name);
+                console.log(price);
                 price=price?price:5;
                 const value=investment.quantity*price;
                 values.push(value)
             }
-            res.send({ investments, userID, values, options:data[0] });
+            res.send({ investments, userID, values, options:data });
         }
         else console.log("Unauthorized for this path");
     })

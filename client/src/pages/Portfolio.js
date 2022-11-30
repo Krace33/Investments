@@ -45,10 +45,9 @@ const Portfolio = () => {
       setData({
         user: res.data.user,
         portfolios: res.data.portfolios,
-        investments: null,
+        investments: res.data.netWorth,
         obj: res.data.obj,
       });
-      console.log(data);
     }
   }
 
@@ -63,9 +62,11 @@ const Portfolio = () => {
   //   y.classList.remove("auth-inner")
   // }
 
+
   return (
     <div id="topLevelPortfolioDiv">
       <p>Portfolio</p>
+      <h2 style={{textAlign: "center"}}> Current Net Worth is ${Math.round(data.investments)}</h2>
       <table>
         <tbody>
           {data.portfolios && data.portfolios.map((portfolio) => {

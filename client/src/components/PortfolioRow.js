@@ -30,7 +30,6 @@ export default function InvestmentRow(props) {
 
     const handleEdit = async (e) => {
         e.preventDefault();
-        console.log("patch request called with", props.id, name);
         await axios.patch('http://127.0.0.1:5000/portfolio',
             {
                 id: props.id,
@@ -48,7 +47,6 @@ export default function InvestmentRow(props) {
             name
         },
             { withCredentials: true });
-        console.log(res);
         await fetch();
     }
 
@@ -72,15 +70,10 @@ export default function InvestmentRow(props) {
         </>
     }
 
-    const myStyle={
-        width:"18rem",
-        display:"flex"
-    }
-
     return (
       <>
         <tr>
-          <Card style={myStyle}>
+          <Card style={{width: "18rem"}}>
             <Card.Img variant="top" src="../images/cardPhoto.jpg" />
             <Card.Body>
               <Card.Title>
@@ -88,7 +81,7 @@ export default function InvestmentRow(props) {
               </Card.Title>
               <Card.Text>
               {!isEditable ? normalText(name) : editableText(name, props.id)}
-              This stock is worth {props.worth}
+              This portfolio is worth ${props.worth}
               </Card.Text>
               {/* <Button variant="primary">Go somewhere</Button> */}
               

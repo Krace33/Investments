@@ -35,7 +35,6 @@ const Portfolio = () => {
         obj: res.data.values,
         options: res.data.options
       });
-      console.log(data);
     }
   }
 
@@ -54,11 +53,11 @@ const Portfolio = () => {
   const addInvestmentElement = () => {
     return <form onSubmit={handleAdd}>
       <Select
-        onChange={(item) => { setDetails({ ...details, name: item.label }) }}
+        onChange={(item) => { setDetails({ ...details, name: item.value }) }}
         options={data.options.map((stock, index) => {
           return {
-            label: stock.label,
-            value: stock.value,
+            label: `${stock.name}(${stock.label})- $${stock.value}`,
+            value: stock.name,
             key: index
           }
         })}
@@ -76,7 +75,7 @@ const Portfolio = () => {
 
   return (
     <div>
-      <p>Portfolio</p>
+      <p>{portfolioName}</p>
       <table>
         <tbody>
           {data.investments && data.investments.map((investment) => {
