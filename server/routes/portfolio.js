@@ -4,6 +4,7 @@ import passport from "passport";
 import bodyParser from "body-parser";
 import { User, PortFolio, Investment } from "../mongodb.js";
 import cookieParser from "cookie-parser";
+import data from "../utilities/getPrices.js";
 
 const portfolio = express.Router();
 portfolio.use(bodyParser.urlencoded({ extended: true }));
@@ -47,7 +48,10 @@ const addValueToPortfolios=async(user, portfolios)=>{
         const investments=await Investment.find({userID:user, portfolioID:portfolio.name});
         let value=0;
         for(const investment of investments){
-            value+=investment.quantity*5;
+            let price=data.find((item)=>item.label===investment.name);
+            console.log(data);
+            price=price?price:5;
+            value+=investment.quantity*price;
         }
         obj.push({
             name: portfolio.name,
@@ -116,7 +120,14 @@ portfolio.route('/:portfolio')
             const portfolioID = req.params.portfolio;
             console.log(req.params);
             const investments = await Investment.find({ userID: userID, portfolioID: portfolioID });
-            res.send({ investments, userID });
+            const values=[];
+            for(const investment of investments){
+                let price=data.find((item)=>item.label===investment.name);
+                price=price?price:5;
+                const value=investment.quantity*price;
+                values.push(value)
+            }
+            res.send({ investments, userID, values, options:data[0] });
         }
         else console.log("Unauthorized for this path");
     })

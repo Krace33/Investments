@@ -12,9 +12,11 @@ import Investment from "./pages/Investments";
 export default function App() {
 
   const [data, setData] = useState({
-    'user': null,
-    'investments': null,
-    'portfolios': null
+    'user': '',
+    'portfolios': [],
+    'investments': [],
+    'obj': [],
+    'options': []
   });
 
   const value = useMemo(() => ([data, setData]), [data, setData]);
@@ -39,7 +41,7 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/portfolio/:portfolioName" element={<Investment/>}/>
+          <Route path="/portfolio/:portfolioName" element={<Investment />} />
         </Routes>
       </UserContext.Provider>
     </Router>
