@@ -23,6 +23,8 @@ const SignUp = () => {
 
 
   return (
+    <div className="auth-wrapper">
+      <div className="auth-inner">
     <div>
     <form onSubmit={handleSubmit}>
         <h3>Sign Up</h3>
@@ -53,6 +55,7 @@ const SignUp = () => {
         </div>
       </form>
     </div>
+    </div></div>
   )
 }
 

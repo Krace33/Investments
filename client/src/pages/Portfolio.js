@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../utilities/userContext';
 import PortfolioRow from '../components/PortfolioRow';
+import { Button } from 'react-bootstrap';
 
 const Portfolio = () => {
 
@@ -57,8 +58,13 @@ const Portfolio = () => {
     fetch();
   }, []);
 
+  // const x=()=>{
+  //   const y= document.getElementById("topLevelPortfolioDiv").parentElement
+  //   y.classList.remove("auth-inner")
+  // }
+
   return (
-    <div>
+    <div id="topLevelPortfolioDiv">
       <p>Portfolio</p>
       <table>
         <tbody>
@@ -75,9 +81,9 @@ const Portfolio = () => {
         </tbody>
       </table>
       {add ?
-        <button onClick={toggleAdd}>Add</button>
+        <Button variant="primary" onClick={toggleAdd}>Add</Button>
         : addPortfolioElement()}
-      <button onClick={handleLogout}>Log Out</button>
+      <Button variant="danger" onClick={handleLogout}>Log Out</Button>
     </div>
   )
 }

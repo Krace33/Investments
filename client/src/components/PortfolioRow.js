@@ -2,6 +2,10 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../utilities/userContext";
+import { Button } from 'react-bootstrap';
+// import Badge from 'react-bootstrap/Badge';
+import Card from 'react-bootstrap/Card';
+
 
 export default function InvestmentRow(props) {
 
@@ -61,17 +65,44 @@ export default function InvestmentRow(props) {
 
     const normalText = (name) => {
         return <>
-            <td><Link to={name}>{name}</Link></td>
-            <td>{props.worth}</td>
-            <td><button onClick={toggleIsEditable}>Edit</button></td>
+            {/* <td><Button variant="outline-info" size="lg"><Link to={name}>{name}</Link></Button></td>
+            
+            <td><Button variant="info" size="lg">{props.worth}</Button></td> */}
+             {/* <td><Button onClick={toggleIsEditable} variant="success">Edit</Button></td>  */}
         </>
     }
 
+    const myStyle={
+        width:"18rem",
+        display:"flex"
+    }
 
-    return <>
+    return (
+      <>
         <tr>
-            {!isEditable ? normalText(name) : editableText(name, props.id)}
-            <td><button onClick={handleDelete}>Delete</button></td>
+          <Card style={myStyle}>
+            <Card.Img variant="top" src="../images/cardPhoto.jpg" />
+            <Card.Body>
+              <Card.Title>
+                {normalText?<Link to={name}>{props.name}</Link>:null}
+              </Card.Title>
+              <Card.Text>
+              {!isEditable ? normalText(name) : editableText(name, props.id)}
+              This stock is worth {props.worth}
+              </Card.Text>
+              {/* <Button variant="primary">Go somewhere</Button> */}
+              
+              
+              {!isEditable?<Button onClick={toggleIsEditable} variant="success">Edit</Button>:null}
+              
+            <Button onClick={handleDelete} variant="secondary">
+              Delete
+            </Button>
+            </Card.Body>
+          </Card>
+          
+          
         </tr>
-    </>
+      </>
+    );
 }
