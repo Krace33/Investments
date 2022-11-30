@@ -4,22 +4,25 @@ import axios from "axios";
 import { UserContext } from "../utilities/userContext";
 
 export default function InvestmentRow(props) {
-    
+
     const [data, setData] = useContext(UserContext);
     const [num, setNum] = useState(props.quantity);
     const [isEditable, setisEditable] = useState(false);
-    const param=props.param;
+    const param = props.param;
 
     const fetch = async () => {
         const res = await axios.get(`http://127.0.0.1:5000/portfolio/${param}`, { withCredentials: true });
         if (res.status === 200) {
-          setData({
-            user: res.data.userID,
-            portfolios: param,
-            investments: res.data.investments
-          });
+            setData({
+                user: res.data.userID,
+                portfolios: param,
+                investments: res.data.investments,
+                obj: res.data.val,
+                options: res.data.options
+            });
         }
-      }
+        console.log(data)
+    }
 
     const toggleIsEditable = () => setisEditable(!isEditable);
 
@@ -28,7 +31,7 @@ export default function InvestmentRow(props) {
         e.preventDefault();
         await axios.patch(`http://127.0.0.1:5000/portfolio/${param}`,
             {
-                id:props.id,
+                id: props.id,
                 number: num
             }
             ,
@@ -40,7 +43,7 @@ export default function InvestmentRow(props) {
 
     const handleDelete = async () => {
         const res = await axios.post(`http://127.0.0.1:5000/portfolio/${param}/delete`, {
-            id:props.id,
+            id: props.id,
         },
             { withCredentials: true });
         console.log(res);

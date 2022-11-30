@@ -2,7 +2,8 @@ import { createContext } from "react";
 
 export const UserContext = createContext({
     'user': null,
-    'portfolios': [],
+    'portfolios': null,
     'investments': null,
-    'obj': []
+    'obj': [],
+    'options':[]
 });

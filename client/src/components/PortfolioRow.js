@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 
 
 export default function InvestmentRow(props) {
-    
+
     const [data, setData] = useContext(UserContext);
     const [name, setName] = useState(props.name);
     const [isEditable, setisEditable] = useState(false);
@@ -16,13 +16,14 @@ export default function InvestmentRow(props) {
     const fetch = async () => {
         const res = await axios.get('http://127.0.0.1:5000/portfolio', { withCredentials: true });
         if (res.status === 200) {
-          setData({
-            user: res.data.user,
-            portfolios: res.data.portfolios,
-            investments: null
-          });
+            setData({
+                user: res.data.user,
+                portfolios: res.data.portfolios,
+                investments: null,
+                obj: res.data.obj,
+            });
         }
-      }
+    }
 
     const toggleIsEditable = () => setisEditable(!isEditable);
 
@@ -32,7 +33,7 @@ export default function InvestmentRow(props) {
         console.log("patch request called with", props.id, name);
         await axios.patch('http://127.0.0.1:5000/portfolio',
             {
-                id:props.id,
+                id: props.id,
                 name
             }
             ,

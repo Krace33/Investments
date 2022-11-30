@@ -1,9 +1,9 @@
 import express from 'express';
 
-const home=express.Router();
+const home = express.Router();
 
 
-home.get('/', (req,res)=>{
+home.get('/', async (req, res) => {
     res.send("Server is running");
 })
 

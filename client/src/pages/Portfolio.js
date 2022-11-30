@@ -46,8 +46,9 @@ const Portfolio = () => {
         user: res.data.user,
         portfolios: res.data.portfolios,
         investments: null,
-        obj: res.data.obj
+        obj: res.data.obj,
       });
+      console.log(data);
     }
   }
 
