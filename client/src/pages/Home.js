@@ -13,10 +13,14 @@ const Home = () => {
     }
 
   return (
+    <div className="auth-wrapper">
+      <div className="auth-inner">
     <div>
     <h1>This is the landing page</h1>
     <h3>{res}</h3>
     <button onClick={check}>Click me!!</button>
+    </div>
+    </div>
     </div>
     
   )

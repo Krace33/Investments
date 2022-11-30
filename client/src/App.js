@@ -34,13 +34,19 @@ export default function App() {
             </div>
           </div>
         </Navbar>
-        <Routes>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/portfolio/:portfolioName" element={<Investment/>}/>
-        </Routes>
+        
+    {/* <div className="auth-wrapper">
+      <div className="auth-inner"> */}
+            <Routes>
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route
+                path="/portfolio/:portfolioName"
+                element={<Investment />}
+              />
+            </Routes>
       </UserContext.Provider>
     </Router>
   );

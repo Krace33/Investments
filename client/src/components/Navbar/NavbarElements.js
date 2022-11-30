@@ -37,6 +37,10 @@ export const Bars = styled(FaBars)`
     transform: translate(-100%, 75%);
     font-size: 1.8rem;
     cursor: pointer;
+    &:hover {
+    transition: all 0.2s ease-in-out;
+    color: #fff;
+  }
   }
 `;
   
@@ -50,7 +54,7 @@ export const NavMenu = styled.div`
   /* width: 100vw;
   white-space: nowrap; */
   @media screen and (max-width: 768px) {
-    display: none;
+    ${'' /* display: none; */}
   }
 `;
   
